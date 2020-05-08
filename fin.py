@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 class PipeCalc:
 
     def __init__(self):
-        self.t_amb = 300 # Temperatura ambiente
-        self.t_base = 350 # Temperatura da base
-        self.length = 0.3 # Comprimento da aleta
-        self.a = 0.0009 # Área da seção transversal da aleta
-        self.p = 0.12 # Perímetro da aleta
-        self.k = 200 # Condutividade térmica do alumínio
-        self.h = 15 # Coeficiente de troca por convecção
+        self.t_amb = 300 # Temperatura ambiente [K]
+        self.t_base = 350 # Temperatura da base  [K]
+        self.length = 0.3 # Comprimento da aleta [m]
+        self.a = 0.0009 # Área da seção transversal da aleta [m²]
+        self.p = 0.12 # Perímetro da aleta [m]
+        self.k = 200 # Condutividade térmica do alumínio [W/mK]
+        self.h = 15 # Coeficiente de troca por convecção [W/m²K]
 
     def calculate_m(self):
         return math.sqrt((self.h * self.p) / (self.k * self.a))
@@ -33,8 +33,9 @@ class PipeCalc:
             list_temperature.append(self.heat_balance(i) * (self.t_base-self.t_amb) + self.t_amb)
         
         plt.plot(list_x, list_temperature, c=col, marker=typ)
+        plt.title('Temperature decrease in a fin', fontsize=20, )
         plt.xlabel('Distance (m)', fontsize=20)
-        plt.ylabel('Average Temperature (C)', fontsize=20)
+        plt.ylabel('Average Temperature (K)', fontsize=20)
         plt.show()
 
 pipe = PipeCalc()
